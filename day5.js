@@ -68,7 +68,7 @@ fs.readFile('./boardingPasses.txt', 'utf-8', (err, data) => {
     if (err) console.log(err);
     data.split('\n').forEach(passport => extractInfo(passport))
     ids.sort((a,b) => a - b).forEach((seat, index, arr) => {
-        if (index >= 1 && seat + 2 === arr[index + 1]) {
+        if (seat + 2 === arr[index + 1]) {
             console.log(seat + 1) // 717
             return seat + 1 
         }
