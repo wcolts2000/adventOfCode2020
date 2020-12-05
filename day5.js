@@ -1,28 +1,30 @@
 // part 1
-const fs = require('fs'),
-      rows = 127,
-      columns = 7,
-      decoder = {
-          F: 'lower',
-          B: 'upper',
-          L: 'lower',
-          R: 'upper'
-      };
+const fs = require('fs');
+const rows = 127;
+const columns = 7;
+const decoder = {
+    F: 'lower',
+    B: 'upper',
+    L: 'lower',
+    R: 'upper'
+};
+const ids = [];
 
 let highestID = 0;
 
-const test = ['BFFFBBFRRR', 'FFFBBBFRRR', 'BBFFBBFRLL'];
-
 function extractInfo(str) {
-    const rowPosition = str.slice(0,7),
-          colPosition = str.slice(-3),
-          row = findRow(rowPosition),
-          column = findColumn(colPosition),
-          id = findId(row, column);
+    const rowPosition = str.slice(0,7);
+    const colPosition = str.slice(-3);
+    const row = findRow(rowPosition);
+    const column = findColumn(colPosition);
+    const id = findId(row, column);
+
+    ids.push(id);
 
     if (id > highestID) {
         highestID = id;
     }
+
     return id;
 }
 
@@ -54,11 +56,22 @@ function modifiedBinarySearch(str, highest) {
 // console.log(highestID)
 // console.log(test.forEach(test => extractInfo(test)))
 
+// fs.readFile('./boardingPasses.txt', 'utf-8', (err, data) => {
+//     if (err) console.log(err);
+//     // console.log(data)
+//     data.split('\n').forEach(passport => extractInfo(passport))
+//     console.log(highestID)
+// })
+
+// part 2
 fs.readFile('./boardingPasses.txt', 'utf-8', (err, data) => {
     if (err) console.log(err);
-    // console.log(data)
     data.split('\n').forEach(passport => extractInfo(passport))
-    console.log(highestID)
+    ids.sort((a,b) => a - b).forEach((seat, index, arr) => {
+        if (index >= 1 && seat + 2 === arr[index + 1]) {
+            console.log(seat + 1) // 717
+            return seat + 1 
+        }
+    })
+    console.log(highestID) // 913
 })
-
-
