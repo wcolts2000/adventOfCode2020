@@ -66,12 +66,13 @@ function modifiedBinarySearch(str, highest) {
 // part 2
 fs.readFile('./boardingPasses.txt', 'utf-8', (err, data) => {
     if (err) console.log(err);
-    data.split('\n').forEach(passport => extractInfo(passport))
-    ids.sort((a,b) => a - b).forEach((seat, index, arr) => {
-        if (seat + 2 === arr[index + 1]) {
-            console.log(seat + 1) // 717
-            return seat + 1 
+    data.split('\n').forEach(passport => extractInfo(passport));
+    ids.sort((a,b) => a - b);
+    for (let i = 0; i < ids.length; i++) {
+        if (ids[i] + 2 === ids[i + 1]) {
+            console.log(ids[i] + 1) // 717
+            return ids[i] + 1
         }
-    })
+    }
     console.log(highestID) // 913
 })
