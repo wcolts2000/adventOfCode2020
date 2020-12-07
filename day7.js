@@ -34,4 +34,4 @@ fs.readFile('./bagRules.txt', 'utf-8', (err, data) => {
         toggle = !toggle;
     }
     console.log(sets[0].size, sets[1].size)
-}
+})
