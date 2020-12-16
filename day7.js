@@ -90,5 +90,5 @@ fs.readFile('./bagRules.txt', 'utf-8', (err, data) => {
         sumUpBags(bag[0], bag[1]);
         bag = q.dequeue();
     }
-    console.log(count)
+    console.log(count) // 5635
 })
