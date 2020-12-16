@@ -1,0 +1,1 @@
+const startingNumbers = [0,20,7,16,1,18,15];
